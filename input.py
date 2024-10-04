@@ -7,24 +7,30 @@ app = marimo.App(width="medium")
 @app.cell
 def __():
     import marimo as mo
-    return (mo,)
+    import requests
+    return mo, requests
 
 
 @app.cell
 def __(mo):
     functions = ['AlphaFold', 'BLAST']
-    function_selecter = mo.ui.dropdown(functions)
-    function_selecter
-    return function_selecter, functions
+    function_selector = mo.ui.dropdown(functions)
+    function_selector
+    return function_selector, functions
 
 
-app._unparsable_cell(
-    r"""
-    if function_selecter.value == 'AlphaFold':
-        
-    """,
-    name="__"
-)
+@app.cell
+def __(function_selector, mo):
+    alphafold_functions = ['UniProt ID', 'AlphaFold DB ID']
+    if function_selector.value == 'AlphaFold':
+        alphafold_selector = mo.ui.dropdown(alphafold_functions)
+        alphafold_selector
+    return alphafold_functions, alphafold_selector
+
+
+@app.cell
+def __():
+    return
 
 
 if __name__ == "__main__":
