@@ -6,6 +6,12 @@ app = marimo.App(width="medium")
 
 @app.cell
 def __():
+    import marimo as mo
+    return (mo,)
+
+
+@app.cell
+def __():
     return
 
 

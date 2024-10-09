@@ -20,13 +20,24 @@ def __(mo):
 
 
 @app.cell
-def __(alphafold_input_types, blast_input_types, function_selector, mo):
+def __(function_selector, mo):
+    alphafold_input_types = []
+    blast_input_types = []
+    secondary_selecter = None
+
     if function_selector.value == 'AlphaFold':
-        alphafold_selector = mo.ui.dropdown(alphafold_input_types, label="Select AlphaFold Function")
+        secondary_selecter = mo.ui.dropdown(alphafold_input_types, label="Select AlphaFold Function")
 
     if function_selector.value == 'BLAST':
-        blast_selector = mo.ui.dropdown(blast_input_types, label="Select BLAST Function")
-    return alphafold_selector, blast_selector
+        secondary_selecter = mo.ui.dropdown(blast_input_types, label="Select BLAST Function")
+
+    secondary_selecter
+    return alphafold_input_types, blast_input_types, secondary_selecter
+
+
+@app.cell
+def __():
+    return
 
 
 if __name__ == "__main__":
